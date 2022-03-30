@@ -35,6 +35,9 @@ export const updateContactsAPI = async (action) => {
     const response = await fetch(`http://localhost:8000/data/${action.id}`, {
       method: "PATCH",
       body: JSON.stringify(action.payload),
+      headers: {
+        ["Content-Type"]: "application/json",
+      },
     }).then((res) => res.json());
     console.log("response", response);
     return response;
