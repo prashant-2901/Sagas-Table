@@ -4,23 +4,18 @@ import "./App.css";
 // import data from "./data.json";
 import ReadOnlyRow from "./components/ReadOnlyRow";
 import EditableRow from "./components/EditableRow";
-import { fetchData } from "./api/api";
 // import { increment, decrement, reset } from "./Actions/counter";
 import { useSelector, useDispatch } from "react-redux";
 import {
   addContact,
-  updateContact,
-  deleteContact,
-  getContactsInit,
+
 } from "./store/actions/actions";
-import { REQUEST_API_DATA, DELETE_SUCCESS } from "./store/actions/types";
+import { REQUEST_API_DATA } from "./store/actions/types";
 import { deleteInit, checkUpdateContact } from "./store/actions/actions";
 //react-redux
 const App = () => {
   const counter = useSelector((state) => state.counter);
   const contacts = useSelector((state) => state.contacts);
-  console.log(contacts);
-  // console.log("app.js", contacts);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch({ type: REQUEST_API_DATA });
@@ -63,7 +58,6 @@ const App = () => {
       phone: addFormData.phone,
       email: addFormData.email,
     };
-    console.log(newContact);
     dispatch(addContact({ type: "addContactInit", payload: newContact }));
   };
   const handleEditFormSubmit = (event) => {
@@ -75,7 +69,6 @@ const App = () => {
       phone: editFormData.phone,
       email: editFormData.email,
     };
-    console.log(editedContact);
     dispatch(checkUpdateContact(editedContact));
     setEditContactId(null);
   };
@@ -96,17 +89,8 @@ const App = () => {
   const handleDeleteClick = (contactId) => {
     dispatch(deleteInit(contactId));
 
-    // dispatch(deleteContact({ id: contactId }));
   };
-  // function getContactInit() {
-  //   fetch("http://localhost:8000/data")
-  //     .then((response) => response.json())
-  //     .then((data) => console.log({ data }));
-  // }
-  // useEffect(() => {
-  //   getContactInit();
-  // }, []);
-  // console.log(contacts);
+
   return (
     <>
       <div className="app-container">
