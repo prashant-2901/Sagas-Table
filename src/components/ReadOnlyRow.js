@@ -1,7 +1,6 @@
 import React from "react";
 
 const ReadOnlyRow = ({ contact, handleEditClick, handleDeleteClick }) => {
-  // console.log(contact.id);
   return (
     <tr>
       <td>{contact.fullName}</td>
